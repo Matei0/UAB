@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucru Mecanic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="active"><i class="i">Lucru Mecanic</i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Cauta altceva</a>
+      </div>
+    <br/>
+      <p class="text">Lucru Mecanic se poate calcula folosind urmatoarea formula:</p>
+    <p class="formula">L = F×d</p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text">F = </span><input type="text" id="num1" placeholder="forta"><span>(in N)</span></div>
+    <div class="text">d = </span><input type="text" id="num2" placeholder="distanta"><span>(in m)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+    <div id="subsol">    
+    <a href="index.html" class="inactive"> Lispsete o data? Da click aici.</a>
+        
+      </div> 
+</body>  
+    <script>
+        const submitButton =   document.getElementById ("btnSubmit")
+        const viteza = document.getElementById("viteza")
+        submitButton.addEventListener("click", calculate1)
+        function calculate1(){
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const rez=n1*n2
+            viteza.innerHTML += '<p class="text">L = ' + rez + ' J</p>';
+       }
+    </script>
+</html>

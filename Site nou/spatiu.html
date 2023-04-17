@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatiu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="active"><i class="i"> Distanta </i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Cauta altceva</a>
+      </div>
+    <br/>
+      <p class="text">Distanta se poate calcula folosind urmatoarele formule:</p>
+    <p class="formula">&#8710d = d<sub>2</sub> - d<sub>1</sub></p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text"><span>d<sub>1</sub> = </span><input type="text" id="num1" placeholder="ex: 20"><span>(in m)</span></div>
+    <div class="text"><span>d<sub>2</sub> = </span><input type="text" id="num2"><span>(in m)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+    <br/>
+    <p class="formula">d=d<sub>0</sub> &plusmn v&#8710t</p>
+    <div class="text"><span>d<sub>0</sub> = </span><input type="text" id="v" placeholder="ex: 20"><span>(in m)</span></div>
+    <div class="text"><span>v = </span><input type="number" id="a" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s</sub>)</span></div>
+    <div class="text"><span>&#8710t = </span><input type="number" id="t" placeholder="ex: 20"><span>(in s)</span></div>
+    <button id="btnSubmit1" class="buton">Get Value</button>
+    <div id="viteza1"></div>
+    <br/>
+    <p class="formula">d=d<sub>0</sub> + v<sub>0</sub>&#8710t &plusmn <span id="ceva"></span><sup>a(&#8710t)<sup>2</sup>&frasl;<sub>2</sub></span></p>
+    <div class="text"><span>d<sub>0</sub> = </span><input type="text" id="d" placeholder="ex: 20"><span>(in m)</span></div>
+    <div class="text"><span>v = </span><input type="number" id="v0" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s</sub>)</span></div>
+    <div class="text"><span>&#8710t = </span><input type="number" id="t1" placeholder="ex: 20"><span>(in s)</span></div>
+    <div class="text"><span>a = </span><input type="number" id="a" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s<sup>2</sup></sub>)</span></div>
+    <button id="btnSubmit2" class="buton">Get Value</button>
+    <div id="dist"></div> 
+   
+    <script>
+        const submitButton =   document.getElementById ("btnSubmit")
+        const viteza = document.getElementById("viteza")
+        submitButton.addEventListener("click", calculate1)
+        function calculate1(){
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const rez=n2-n1
+            viteza.innerHTML += '<p class="text"> d = ' + rez + ' m</p>';
+       }
+       const submitButton1 =   document.getElementById ("btnSubmit1")
+        const viteza1 = document.getElementById("viteza1")
+        submitButton1.addEventListener("click", calculate2)
+        function calculate2(){
+            const v= parseFloat(document.getElementById("v").value);
+            const a = parseFloat(document.getElementById("a").value);
+            const t = parseFloat(document.getElementById("t").value);
+            const rez1=v+a*t
+            viteza1.innerHTML += '<p class="text"> d = ' + rez1 + ' m</p>';
+       }
+       const submitButton2 =   document.getElementById ("btnSubmit2")
+       const distanta = document.getElementById("dist")
+        submitButton2.addEventListener("click", calculate3)
+        function calculate3(){
+            const d= parseFloat(document.getElementById("d").value);
+            const v0 = parseFloat(document.getElementById("v0").value);
+            const t1 = parseFloat(document.getElementById("t1").value);
+            const a = parseFloat(document.getElementById("a").value);
+            const rez2=d+v0*t1+a*t1*t1/2
+            dist.innerHTML += '<p class="text"> d = ' + rez2 + ' m</p>';
+       }
+
+
+    </script>
+
+</body>
+</html>

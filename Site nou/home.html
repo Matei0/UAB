@@ -1,0 +1,529 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="poza.png">
+</head>
+<body id="prim">
+  
+  <div class="navbar1">
+    <a class="active1" href=""><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="index.html"><i class="fa fa-fw fa-search"></i>Rezolvare manuala</a>
+    <a href="teorie.html"><i class="fa fa-fw fa-envelope"></i> Teorie</a>
+    <a href="info.html"><i class="fa fa-question-circle"></i> Ajutor</a>
+    <a href="info.html"><i class="fa fa-fw fa-user"></i> Info</a>
+  </div>  
+      <div class="text-home">Acest site web a fost creat cu scopul de a te ajuta sa rezolvi probleme de fizica, fara sa ai nevoie de cunostinte in domeniu, iar segmentul destinat rezolvarii manuale 
+        si cel de teorie te vor ajuta sa obtii o baza teoretica incipienta. Intreg site-ul a fost gandit pentru a fi cat mai usor de folosit, dar daca intampini difcultati in bara de sus
+         vei gasii un ghid complet al aplicatiei notat cu "Ajutor".</div>
+      <div id="auto">
+        <p class="text1">Mai jos se afla o sectiune mai interactiva a programului, aceasta avand rolul de a rezolva automat poblemele foarte usoare din fizica. Pentru a rezolva probleme mai 
+          complexe foloseste "Rezolvare manuala".</p>
+        <input type="text" id="mySearch1" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+        <ul id="myMenu1">
+        <li id="Lista"><button id="v" class="lista">Viteza</button></li>
+        <li id="Lista"><button id="dist" class="lista">Spatiul</button></li>
+        <li id="Lista"><button id="timp" class="lista">Timpul</button></li>
+        <li id="Lista"><button id="accel" class="lista">acceleratia</button></li>
+        <li id="Lista"><button id="forta" class="lista">forta</button></li>
+        <li id="Lista"><button id="fortaf" class="lista">forta de frecare</button></li>
+        <li id="Lista"><button id="fortac" class="lista">forta centripeta</button></li>
+        <li id="Lista"><button id="accp" class="lista">acceleratie centripeta</button></li>
+      </ul>
+      <div id="place"></div>
+      </div>
+</body>
+<script>
+  function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch1");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu1");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("button")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+<script>
+  const v = document.getElementById("v");
+  v.addEventListener("click", viteza);
+  function viteza (){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea timpului <input type="checkbox" id="ct"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea distantei <input type="checkbox" id="cd"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea acceleratiei si a vitezei initiale<input type="checkbox" id="ca"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea impulsului <input type="checkbox" id="cp"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea masei <input type="checkbox" id="cm"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea energiei cinetice <input type="checkbox" id="cec"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea fortei <input type="checkbox" id="cf"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea puterii <input type="checkbox" id="cpu"></div>';
+    place.innerHTML += '<button id="calc">Calculate</button>';
+    
+    var ct = document.getElementById("ct");
+    var cd = document.getElementById("cd");
+    var ca = document.getElementById("ca");
+    const cp = document.getElementById("cp");
+    const cm = document.getElementById("cm");
+    const cec = document.getElementById("cec");
+    const cf = document.getElementById("cf");
+    const cpu = document.getElementById("cpu");
+    const calc = document.getElementById("calc");
+    calc.addEventListener("click", comp);
+    function comp (){
+    var calc = document.getElementById("calc");
+    calc.addEventListener("click", funct);
+    function funct (){
+    if(ct.checked == true && cd.checked == true){
+      place.innerHTML += '<input type="text" id="t">';
+      place.innerHTML += '<input type="text" id="d">';
+      place.innerHTML += '<button id="final">Rezultat</button>';
+      final.addEventListener('click', ultm);
+      function ultm(){
+        let t = parseFloat(document.getElementById("t").value);
+        let d = parseFloat(document.getElementById("d").value);
+        rez = d/t;
+        place.innerHTML += '<p class="text1">'+rez+'</p>';
+      
+      }
+    } else if(ct.checked == true && ca.checked == true) {
+        place.innerHTML += '<input type="text" id="t">';
+        place.innerHTML += '<input type="text" id="vi">';
+        place.innerHTML += '<input type="text" id="a">';
+        place.innerHTML += '<button id="final1">Rezultat</button>';
+        final1.addEventListener('click', ultm1);
+        function ultm1(){
+        let t = parseFloat(document.getElementById("t").value);
+        let vi = parseFloat(document.getElementById("vi").value);
+        let a = parseFloat(document.getElementById("a").value);
+        rez1 = vi + a*t;
+        place.innerHTML += '<p class="text1">'+rez1+'</p>';
+    }
+  } else if(cp.checked == true && cm.checked == true) {
+            place.innerHTML += '<input type="text" id="p">';
+            place.innerHTML += '<input type="text" id="m">';
+            place.innerHTML += '<button id="final2">Rezultat</button>';
+            final2.addEventListener('click', ultm2);
+            function ultm2(){
+              let p = parseFloat(document.getElementById("p").value);
+              let m = parseFloat(document.getElementById("m").value);
+              rez2 = p/m;
+              place.innerHTML += '<p class="text1">'+rez2+'</p>';
+              }
+    } else if(cec.checked == true && cm.checked == true){
+            place.innerHTML += '<input type="text" id="ec">';
+            place.innerHTML += '<input type="text" id="m">';
+            place.innerHTML += '<button id="final3">Rezultat</button>';
+            final3.addEventListener('click', ultm3);
+            function ultm3(){
+              let ec = parseFloat(document.getElementById("ec").value);
+              let m = parseFloat(document.getElementById("m").value);
+              rez3 = Math.sqrt(2*ec/m);
+              place.innerHTML += '<p class="text1">'+rez3+'</p>'; 
+             }
+    } else if(cpu.checked == true && cf.checked == true){
+              place.innerHTML += '<input type="text" id="pu">';
+              place.innerHTML += '<input type="text" id="f">';
+              place.innerHTML += '<button id="final4">Rezultat</button>';
+              final4.addEventListener('click', ultm4);
+              function ultm4(){
+              let pu = parseFloat(document.getElementById("pu").value);
+              let f = parseFloat(document.getElementById("f").value);
+              rez4 = pu/f;
+              place.innerHTML += '<p class="text1">'+rez4+'</p>';
+             }
+            } else {
+              alert("Progranul nu poate rezolva");
+            }}
+            }}
+  
+  const dist = document.getElementById("dist")
+  dist.addEventListener("click", distanta)
+  function distanta(){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea timpului <input type="checkbox" id="ctim"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea vitezei <input type="checkbox" id="cvit"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea distantei initiale, a vitezei initiale si a acceleratiei <input type="checkbox" id="cvda"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea lucrului mecanica si a fortei <input type="checkbox" id="cluf"></div>';
+    place.innerHTML += '<button id="det">Calculate</button>'
+    const det = document.getElementById('det')
+    det.addEventListener("click", ef1)
+    function ef1(){
+      const ctim = document.getElementById("ctim")
+      const cvim = document.getElementById("cvit")
+      const cvda = document.getElementById("cvda")
+      const cluf = document.getElementById("cluf")
+      if(ctim.checked == true && cvit.checked == true){
+      place.innerHTML += '<input type="text" id="tim" placeholder="timpul">';
+      place.innerHTML += '<input type="text" id="vit" placeholder="viteza">';
+      place.innerHTML += '<button id="dis1">Rezultat</button>';
+      const dis1= document.getElementById("dis1")
+      dis1.addEventListener('click', fct1);
+      function fct1(){
+        let vit = parseFloat(document.getElementById("vit").value);
+        let tim = parseFloat(document.getElementById("tim").value);
+        di = vit*tim;
+        place.innerHTML += '<p class="text1">d=' + di + 'm</p>';
+      
+      }
+    }else if(ctim.checked == true && cvda.checked == true){
+      place.innerHTML += '<input type="text" id="tim" placeholder="timpul">';
+      place.innerHTML += '<input type="text" id="vim" placeholder="viteza initiala">';
+      place.innerHTML += '<input type="text" id="dii" placeholder="distantei initiala">';
+      place.innerHTML += '<input type="text" id="acc" placeholder="acceleratia">';
+      place.innerHTML += '<button id="dis2">Rezultat</button>';
+      const dis2= document.getElementById("dis2")
+      dis2.addEventListener('click', fct2);
+      function fct2(){
+        let vim = parseFloat(document.getElementById("vim").value);
+        let dii = parseFloat(document.getElementById("dii").value)
+        let tim = parseFloat(document.getElementById("tim").value);
+        let acc = parseFloat(document.getElementById("acc").value);
+        di1 = dii + vim*tim + (acc*tim*tim)/2;
+        place.innerHTML += '<p class="text1">d=' + di1 + 'm</p>';
+      
+      }
+    }else if(cluf.checked == true){
+      place.innerHTML += '<input type="text" id="lu" placeholder="lucrul mecanic">';
+      place.innerHTML += '<input type="text" id="fo" placeholder="forta">';
+      place.innerHTML += '<button id="dis2">Rezultat</button>';
+      const dis2= document.getElementById("dis2")
+      dis2.addEventListener('click', fct2);
+      function fct2(){
+        let lu = parseFloat(document.getElementById("lu").value);
+        let fo = parseFloat(document.getElementById("fo").value);
+        di2 = lu/fo;
+        place.innerHTML += '<p class="text1">d=' + di2 + 'm</p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+  const timp = document.getElementById("timp")
+  timp.addEventListener("click", tmp)
+  function tmp(){
+    place.innerHTML += '<p class="text"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valorile timpilor initiali si finali? <input type="checkbox" id="ctif"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea vitezei medii<input type="checkbox" id="cvite"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea distantei<input type="checkbox" id="cdis"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea acceleratiei si a variatiei vitezei<input type="checkbox" id="cav"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea energiei si a puterii <input type="checkbox" id="cepu"></div>';
+    place.innerHTML += '<button id="det1">Calculate</button>'
+    const det1 = document.getElementById('det1')
+    det1.addEventListener("click", ef2)
+    function ef2(){
+      const ctif = document.getElementById("ctif")
+      const cvite = document.getElementById("cvite")
+      const cdis = document.getElementById("cdis")
+      const cepu = document.getElementById("cepu")
+      if(ctif.checked == true){
+      place.innerHTML += '<input type="text" id="tii" placeholder="timpul initial">';
+      place.innerHTML += '<input type="text" id="tif" placeholder="timpul final">';
+      place.innerHTML += '<button id="timp1">Rezultat</button>';
+      const timp1= document.getElementById("timp1")
+      timp1.addEventListener('click', fcti1);
+      function fcti1(){
+        let tii = parseFloat(document.getElementById("tii").value);
+        let tif = parseFloat(document.getElementById("tif").value);
+        tm = tif - tii;
+        place.innerHTML += '<p class="text1">t=' + tm + 's</p>';
+      
+      }
+    }else if(cvite.checked == true && cdis.checked == true){
+      place.innerHTML += '<input type="text" id="vme" placeholder="viteza medie">';
+      place.innerHTML += '<input type="text" id="ds" placeholder="distanta">';;
+      place.innerHTML += '<button id="timp2">Rezultat</button>';
+      const timp2= document.getElementById("timp2")
+      timp2.addEventListener('click', fcti2);
+      function fcti2(){
+        let vme = parseFloat(document.getElementById("vme").value);
+        let ds = parseFloat(document.getElementById("ds").value)
+        tm1 = ds/vme;
+        place.innerHTML += '<p class="text1">t=' + tm1 + 's</p>';
+      
+      }
+    }else if(cav.checked == true){
+      place.innerHTML += '<input type="text" id="acl" placeholder="acceleratia">';
+      place.innerHTML += '<input type="text" id="va" placeholder="variatia vitezei">';
+      place.innerHTML += '<button id="timp3">Rezultat</button>';
+      const timp3 = document.getElementById("timp3")
+      timp3.addEventListener('click', fcti3);
+      function fcti3(){
+        let acl = parseFloat(document.getElementById("acl").value);
+        let va = parseFloat(document.getElementById("va").value);
+        tm2 = va/acl;
+        place.innerHTML += '<p class="text1">t=' + tm2 + 's</p>';
+      }
+    }else if(cepu.checked == true){
+      place.innerHTML += '<input type="text" id="ee" placeholder="energie">';
+      place.innerHTML += '<input type="text" id="put" placeholder="putere">';
+      place.innerHTML += '<button id="timp4">Rezultat</button>';
+      const timp4 = document.getElementById("timp4")
+      timp4.addEventListener('click', fcti4);
+      function fcti4(){
+        let ee = parseFloat(document.getElementById("ee").value);
+        let put = parseFloat(document.getElementById("put").value);
+        tm3 = ee/put;
+        place.innerHTML += '<p class="text1">t=' + tm3 + 's</p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+
+  const accel = document.getElementById("accel")
+  accel.addEventListener("click", accelera)
+  function accelera(){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea timpului <input type="checkbox" id="ctt"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea variatiei vitezei <input type="checkbox" id="cviv"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea vitezei initiale si a distantei <input type="checkbox" id="cvdt"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea masei si a fortei <input type="checkbox" id="cfm"></div>';
+    place.innerHTML += '<button id="det2">Calculate</button>'
+    const det2 = document.getElementById('det2')
+    det2.addEventListener("click", ef2)
+    function ef2(){
+      const ctt = document.getElementById("ctt")
+      const cviv = document.getElementById("cviv")
+      const cvdt = document.getElementById("cvdt")
+      const cfm = document.getElementById("cfm")
+      if(ctt.checked == true && cviv.checked == true){
+      place.innerHTML += '<input type="text" id="tt" placeholder="timpul">';
+      place.innerHTML += '<input type="text" id="viv" placeholder="variatia vitezei">';
+      place.innerHTML += '<button id="d1">Rezultat</button>';
+      const d1= document.getElementById("d1")
+      d1.addEventListener('click', ft1);
+      function ft1(){
+        let viv = parseFloat(document.getElementById("viv").value);
+        let tt = parseFloat(document.getElementById("tt").value);
+        ti = viv/tt
+        place.innerHTML += '<p class="text1">a=' + ti + '<sup>m</sup>&frasl;<sub>s<sup>2</sup></sub></p>';
+      
+      }
+    }else if(ctt.checked == true && cvdt.checked == true){
+      place.innerHTML += '<input type="text" id="tt" placeholder="timpul">';
+      place.innerHTML += '<input type="text" id="vii" placeholder="viteza initiala">';
+      place.innerHTML += '<input type="text" id="dit" placeholder="distantei">';
+      place.innerHTML += '<button id="d2">Rezultat</button>';
+      const d2= document.getElementById("d2")
+      d2.addEventListener('click', ft2);
+      function ft2(){
+        let tt = parseFloat(document.getElementById("tt").value);
+        let vii = parseFloat(document.getElementById("vii").value)
+        let dit = parseFloat(document.getElementById("dit").value);
+        ti1 = (2*(dit-vii*tt))/(tt*tt);
+        place.innerHTML += '<p class="text1">a=' + ti1 + '<sup>m</sup>&frasl;<sub>s<sup>2</sup></sub></p>';
+      
+      }
+    }else if(cfm.checked == true){
+      place.innerHTML += '<input type="text" id="fort" placeholder="forta">';
+      place.innerHTML += '<input type="text" id="mas" placeholder="masa">';
+      place.innerHTML += '<button id="d3">Rezultat</button>';
+      const d3= document.getElementById("d3")
+      d3.addEventListener('click', ft3);
+      function ft3(){
+        let fort = parseFloat(document.getElementById("fort").value);
+        let mas = parseFloat(document.getElementById("mas").value);
+        ti3 = fort/mas;
+        place.innerHTML += '<p class="text1">a=' + ti3 + '<sup>m</sup>&frasl;<sub>s<sup>2</sup></sub></p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+
+  const forta = document.getElementById("forta")
+  forta.addEventListener("click", fff)
+  function fff(){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea timpului si a impulsului <input type="checkbox" id="cpt"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea lucrului mecanic si a distantei<input type="checkbox" id="cld"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea masei si a acceleratiei <input type="checkbox" id="cmaac"></div>';
+    place.innerHTML += '<button id="det3">Calculate</button>'
+    const det3 = document.getElementById('det3')
+    det3.addEventListener("click", ef3)
+    function ef3(){
+      const cpt = document.getElementById("cpt")
+      const cld = document.getElementById("cld")
+      const cmaas = document.getElementById("cmaac")
+      if(cpt.checked == true){
+      place.innerHTML += '<input type="text" id="ttt" placeholder="timpul">';
+      place.innerHTML += '<input type="text" id="imp" placeholder="impulsul">';
+      place.innerHTML += '<button id="r1">Rezultat</button>';
+      const r1= document.getElementById("r1")
+      r1.addEventListener('click', fti1);
+      function fti1(){
+        let ttt = parseFloat(document.getElementById("ttt").value);
+        let imp = parseFloat(document.getElementById("imp").value);
+        ff = imp/ttt
+        place.innerHTML += '<p class="text1">F=' + ff + 'N</p>';
+      
+      }
+    }else if(cld.checked == true){
+      place.innerHTML += '<input type="text" id="lucr" placeholder="lucrul mecanic">';
+      place.innerHTML += '<input type="text" id="dd" placeholder="distanta">';
+      place.innerHTML += '<button id="r2">Rezultat</button>';
+      const r2= document.getElementById("r2")
+      r2.addEventListener('click', fti2);
+      function fti2(){
+        let lucr = parseFloat(document.getElementById("lucr").value);
+        let dd = parseFloat(document.getElementById("dd").value)
+        ff1 = lucr/dd;
+        place.innerHTML += '<p class="text1">F=' + ff1 + 'N</p>';
+      
+      }
+    }else if(cmaac.checked == true){
+      place.innerHTML += '<input type="text" id="acc" placeholder="acceleratia">';
+      place.innerHTML += '<input type="text" id="mass" placeholder="masa">';
+      place.innerHTML += '<button id="r3">Rezultat</button>';
+      const r3= document.getElementById("r3")
+      r3.addEventListener('click', fti3);
+      function fti3(){
+        let acc = parseFloat(document.getElementById("acc").value);
+        let mass = parseFloat(document.getElementById("mass").value);
+        ff3 = acc*mas;
+        place.innerHTML += '<p class="text1">F=' + ff3 + 'N</p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+
+  const fortaf = document.getElementById("fortaf")
+  fortaf.addEventListener("click", fff1)
+  function fff1(){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea coeficientului de frecare si a normalei la suprafata <input type="checkbox" id="cmn"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea variatiei energieie si a distantei<input type="checkbox" id="ced"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea masei, a acceleratiei si a fortei de tractiune<input type="checkbox" id="cmaft"></div>';
+    place.innerHTML += '<button id="det4">Calculate</button>'
+    const det4 = document.getElementById('det4')
+    det4.addEventListener("click", ef4)
+    function ef4(){
+      const cmn = document.getElementById("cmn")
+      const ced = document.getElementById("ced")
+      const cmaft = document.getElementById("cmaft")
+      if(cmn.checked == true){
+      place.innerHTML += '<input type="text" id="miu" placeholder="coeficientul de frecare">';
+      place.innerHTML += '<input type="text" id="norm" placeholder="normala la suprafata">';
+      place.innerHTML += '<button id="f1">Rezultat</button>';
+      const f1= document.getElementById("f1")
+      f1.addEventListener('click', fcti1);
+      function fcti1(){
+        let miu = parseFloat(document.getElementById("miu").value);
+        let norm = parseFloat(document.getElementById("norm").value);
+        fof = miu*norm
+        place.innerHTML += '<p class="text1">F<sub>f</sub>=' + fof + 'N</p>';
+      
+      }
+    }else if(ced.checked == true){
+      place.innerHTML += '<input type="text" id="enr" placeholder="energia">';
+      place.innerHTML += '<input type="text" id="did" placeholder="distanta">';
+      place.innerHTML += '<button id="f2">Rezultat</button>';
+      const f2= document.getElementById("f2")
+      f2.addEventListener('click', fcti2);
+      function fcti2(){
+        let enr = parseFloat(document.getElementById("enr").value);
+        let did = parseFloat(document.getElementById("did").value)
+        fof1 = enr/did;
+        place.innerHTML += '<p class="text1">F<sub>f</sub>=' + fof1 + 'N</p>';
+      
+      }
+    }else if(cmaft.checked == true){
+      place.innerHTML += '<input type="text" id="fdt" placeholder="forta de tractiune">';
+      place.innerHTML += '<input type="text" id="al" placeholder="acceleratia">';
+      place.innerHTML += '<input type="text" id="mM" placeholder="masa">';
+      place.innerHTML += '<button id="f3">Rezultat</button>';
+      const f3= document.getElementById("f3")
+      f3.addEventListener('click', fcti3);
+      function fcti3(){
+        let fdt = parseFloat(document.getElementById("fdt").value);
+        let al = parseFloat(document.getElementById("al").value);
+        let mM = parseFloat(document.getElementById("mM").value);
+        fof3 = fdt-al*mM;
+        place.innerHTML += '<p class="text1">F<sub>f</sub>=' + fof3 + 'N</p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+  const fortac = document.getElementById("fortac")
+  fortac.addEventListener("click", fff2)
+  function fff2(){
+    place.innerHTML += '<p class="text1"> Completeaza campurile cu valorile pe care le cunosti, restul raman goale:</p>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea razei si a vitezei<input type="checkbox" id="cR"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea vitezei unghiulare si a razei<input type="checkbox" id="cvu"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea acceleratiei centripete<input type="checkbox" id="cacp"></div>';
+    place.innerHTML += '<div class="text1">Cunosti valoarea masei<input type="checkbox" id="cmmm"></div>';
+    place.innerHTML += '<button id="det5">Calculate</button>'
+    const det5 = document.getElementById('det5')
+    det5.addEventListener("click", ef5)
+    function ef5(){
+      const cR = document.getElementById("cR")
+      const cvu = document.getElementById("cvu")
+      const cmmm = document.getElementById("cmmm")
+      const cacp = document.getElementById("cacp")
+      if(cmmm.checked == true && cacp.checked == true){
+      place.innerHTML += '<input type="text" id="m1" placeholder="masa">';
+      place.innerHTML += '<input type="text" id="acp1" placeholder="acceleratia centripeta">';
+      place.innerHTML += '<button id="g1">Rezultat</button>';
+      const g1= document.getElementById("g1")
+      g1.addEventListener('click', fun1);
+      function fun1(){
+        let m1 = parseFloat(document.getElementById("m1").value);
+        let acp1 = parseFloat(document.getElementById("acp1").value);
+        forcp = m1*acp1
+        place.innerHTML += '<p class="text1">F<sub>cp</sub>=' + forcp + 'N</p>';
+      
+      }
+    }else if(cmmm.checked == true && cR.checked == true){
+      place.innerHTML += '<input type="text" id="m2" placeholder="masa">';
+      place.innerHTML += '<input type="text" id="rr" placeholder="raza">';
+      place.innerHTML += '<input type="text" id="vv" placeholder="viteza">';
+      place.innerHTML += '<button id="g2">Rezultat</button>';
+      const g2= document.getElementById("g2")
+      g2.addEventListener('click', fun2);
+      function fun2(){
+        let rr = parseFloat(document.getElementById("rr").value);
+        let m2 = parseFloat(document.getElementById("m2").value)
+        let vv = parseFloat(document.getElementById("vv").value)
+        forcp1 = m2*((vv*vv)/rr);
+        place.innerHTML += '<p class="text1">F<sub>cp</sub>=' + forcp1 + 'N</p>';
+      
+      }
+    }else if(cmmm.checked == true && cvu.checked == true){
+      place.innerHTML += '<input type="text" id="raz" placeholder="raza">';
+      place.innerHTML += '<input type="text" id="vu" placeholder="viteza unghiulara">';
+      place.innerHTML += '<input type="text" id="m2" placeholder="masa">';
+      place.innerHTML += '<button id="g3">Rezultat</button>';
+      const g3= document.getElementById("g3")
+      g3.addEventListener('click', fun3);
+      function fun3(){
+        let raz = parseFloat(document.getElementById("raz").value);
+        let vu = parseFloat(document.getElementById("vu").value);
+        let m2 = parseFloat(document.getElementById("m2").value);
+        forcp3 = m2*vu*vu*raz;
+        place.innerHTML += '<p class="text1">F<sub>f</sub>=' + forcp3 + 'N</p>';
+      }
+    }else {
+              alert("Progranul nu poate rezolva");
+            }
+    }
+  }
+</script>
+</html>

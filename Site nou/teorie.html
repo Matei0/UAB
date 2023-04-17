@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teorie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="navbar">
+        <a class="active"><i class="i"> Teorie </i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Inapoi la pagina principala</a>
+     </div>
+    <!--   
+        <div class="spatiu">
+        <h1 class="Titlu"><u>Fizica poate sa fie impartita in mai multe capitole, iar in scoala vei studia sau ai studiat:</u></h1>
+     </div>
+     <br/>
+     <div class="space"><b>Mecanica</b><div>se ocupa cu studiul </div></div>
+     <div class="space">
+        <p class="title"><font class="font1">Termodinamica</font></p>
+     </div>
+     <div class="space">
+        <p class="title"><font class="font1">Electricitate si magnetism</font></p>
+     </div>
+     <div class="space">
+      <p class="title"><font class="font1">Optica</font> </p>
+   </div>
+   <div class="space">
+      <p class="title"><font class="font1">Oscilatii</font> </p>
+   </div> --->
+   <div class="tab">
+    <button class="tablinks" onmouseover="openCity(event, 'Mecanica')">Mecanica</button>
+    <button class="tablinks" onmouseover="openCity(event, 'Termodinamica')">Termodinamica</button>
+    <button class="tablinks" onmouseover="openCity(event, 'Optica')">Optica</button>
+    <button class="tablinks" onmouseover="openCity(event, 'Em')">Electricitate si magnetism</button>
+   </div>
+  
+  <div id="Mecanica" class="tabcontent">
+    <h3>Mecanica</h3>
+    <p>Studiaza miscarea corpurilor</p>
+    <p>Se imparte in:</p>
+    <ol type="1">
+        <li><a>Mecanica solidului</a></li>
+        <li>Mecanica fluidelor</li>
+    </ol>
+  </div>
+  
+  <div id="Termodinamica" class="tabcontent">
+    <h3>Termodinamica</h3>
+    <p>Studiaza schimbul de energie dintre doua sau mai multe corpuri</p> 
+  </div>
+  
+  <div id="Em" class="tabcontent">
+    <h3>Electricitate si magnetism</h3>
+    <p>Ineractiunile electrice si magnetice dintre corpuri</p>
+  </div>
+  <div id="Optica" class="tabcontent">
+    <h3>Mecanica</h3>
+    <p>Studiaza traiectoria razelor de lumina</p>
+  </div>
+  <div class="clearfix"></div>
+
+      <div id="subsol"> 
+        <a href="index.html" class="inactive"> Lispsete o data? Da click aici.</a>
+            
+          </div> 
+</body>
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+    </style>
+</html>

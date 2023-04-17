@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezolvare</title>
+    <link rel="stylesheet" href="style.css">
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+</head>
+<body>
+     <div class="navbar">
+        <a class="active"><i class="i">Grafic </i></a>
+        <a href="#" class="inactive"><i class="i"></i> Completeaza casutele si programul va genera un grafic automat:</a>
+     </div>
+     <div id="mStanga">
+        <p class="text">Graficul va avea la baza:</p>
+        <button id="functie" class="graf">o functie</button>
+        <button id="valor" class="graf">un set de valori</button>
+        <div id="loc"></div>
+     </div>
+     <div id="sg">
+     <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+     <div id="subsol"> 
+        <a href="#" class="inactive"> Ai nevoie de un grafic? Da click aici.</a>
+    </div> 
+</body>
+<script>
+    const functie = document.getElementById("functie")
+    functie.addEventListener("click", grafic1)
+    function grafic1 (){
+        loc.innerHTML += '<div><p class="text">Introdu functia</p><input type="text" id="fct"></div';
+        loc.innerHTML += '<div><p class="text">Introdu valoarea maxima pe care sa o aiba x</p><input type="text" id="x" value="10"></div';
+        loc.innerHTML += '<button id="buton">Generare</button>'
+        const buton = document.getElementById("buton")
+        buton.addEventListener('click', generareGrafic1)
+    function generareGrafic1(){
+        const fct = document.getElementById("fct")
+        const x = document.getElementById("x")
+        const xValues = [];
+        const yValues = [];
+        generateData("2*x", 0, 30, 0.5);
+
+        new Chart("myChart", {
+          type: "line",
+        data: {
+        labels: xValues,
+        datasets: [{
+        fill: false,
+        pointRadius: 1,
+        borderColor: "rgba(255,0,0,0.5)",
+        data: yValues
+        }]
+    },    
+    options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      fontSize: 16
+    }
+  }
+});
+function generateData(value, i1, i2, step = 1) {
+  for (let x = i1; x <= i2; x += step) {
+    yValues.push(eval(value));
+    xValues.push(x);
+  }
+}
+    }}
+const valor = document.getElementById("valor")
+valor.addEventListener("click", grafic2)
+function grafic2 (){
+  loc.innerHTML += '<div><p class="text">Care sunt valorile lui x </p></div><div><input type="text" id="x1"></div>';
+  loc.innerHTML += '<div><p class="text">Care sunt valorile lui y </p></div><div><input type="text" id="y1"></div>';
+    loc.innerHTML += '<div><p class="text"><sub>valorile se introduc una dupa alta cu virgula intre ele </sub></p></div>';
+  loc.innerHTML += '<button id="buton1">Generare</button>'
+  const buton1 = document.getElementById("buton1")
+  buton1.addEventListener("click", valori)
+  function valori (){
+    const x1 = document.getElementById("x1")
+    const y1 = document.getElementById("y1")
+    const xValues = [x1.value];
+const yValues = [y1.value];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 1, max:16}}],
+    }
+  }
+});
+  }
+}
+</script>
+</html>

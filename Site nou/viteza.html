@@ -1,0 +1,99 @@
+<html lang="en">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viteza</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="navbar">
+        <a class="active"><i class="i"> Viteza </i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Cauta altceva</a>
+      </div>
+    <br/>
+      <p class="text">Viteza se poate calcula folosind urmatoarele formule:</p>
+    <p class="formula">v = <sup>&#8710d</sup>&frasl;<sub>&#8710t</sub></p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text"><span>&#8710d = </span><input type="number" id="num1" placeholder="ex: 20"><span>(in m)</span></div>
+    <div class="text"><span>&#8710t = </span><input type="number" id="num2"><span>(in s)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+    <br/>
+    <p class="formula">v=v<sub>0</sub> &plusmn a&#8710t</p>
+    <div class="text"><span>v<sub>0</sub> = </span><input type="text" id="v" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s</sub>)</span></div>
+    <div class="text"><span>a = </span><input type="number" id="a" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s<sup>2</sup></sub>)</span></div>
+    <div class="text"><span>&#8710t = </span><input type="number" id="t" placeholder="ex: 20"><span>(in s)</span></div>
+    <button id="btnSubmit1" class="buton">Get Value</button>
+    <div id="viteza1"></div>
+    <div><canvas id="myChart" style="width:100%;max-width:600px"></canvas></div>
+    <br/>
+    <div id="subsol"> 
+      <a href="index.html" class="inactive"> Lispsete o data? Da click aici.</a>
+          
+        </div> 
+      </body>
+   <script>
+        const submitButton =   document.getElementById ("btnSubmit")
+        const viteza = document.getElementById("viteza")
+        submitButton.addEventListener("click", calculate1)
+      
+        function calculate1(){
+          
+      
+          const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const rez=n1/n2
+            viteza.innerHTML += '<p class="text" id="rasp1"> v=' + rez + ' <sup>m</sup>&frasl;<sub>s</sub></p>';
+       }
+      
+       const submitButton1 =   document.getElementById ("btnSubmit1")
+        const viteza1 = document.getElementById("viteza1")
+        submitButton1.addEventListener("click", calculate2)
+        function calculate2(){
+            const v= parseFloat(document.getElementById("v").value);
+            const a = parseFloat(document.getElementById("a").value);
+            const t = parseFloat(document.getElementById("t").value);
+            const rez1=v+a*t
+            viteza1.innerHTML += '<p class="text"> v=' + rez1 + ' <sup>m</sup>&frasl;<sub>s</sub></p>';
+       }
+
+
+    </script>
+    <script>
+       const v= parseFloat(document.getElementById("v").value);
+      const xValues = [];
+      const yValues = [];
+      generateData("x * 2 + 7", 0, 10, 0.5);
+      
+      new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            fill: false,
+            pointRadius: 1,
+            borderColor: "rgba(255,0,0,0.5)",
+            data: yValues
+          }]
+        },    
+        options: {
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "y = x * 2 + 7",
+            fontSize: 16
+          }
+        }
+      });
+      function generateData(value, i1, i2, step = 1) {
+        for (let x = i1; x <= i2; x += step) {
+          yValues.push(eval(value));
+          xValues.push(x);
+        }
+      }
+      </script>
+
+</html>

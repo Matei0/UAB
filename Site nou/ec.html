@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energia cinetica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="active"><i class="i">Energia cinetica </i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Cauta altceva</a>
+      </div>
+    <br/>
+      <p class="text">Energia cinetica se poate calcula folosind urmatoarele formule:</p>
+    <p class="formula">E<sub>c</sub> = E - E<sub>p</sub></p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text"><span>E = <input type="text" id="num1" placeholder="ex: 20"><span>(in J)</span></div>
+    <div class="text"><span>E<sub>p</sub> = </span><input type="text" id="num2"><span>(in J)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+    <br/>
+    <p class="formula">E<sub>c</sub> = <sup><small>m v<sup>2</sup></small></sup>&frasl;<sub>2</sub></p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text"><span>m = </span><input type="text" id="v" placeholder="ex: 20"><span>(in Kg)</span></div>
+    <div class="text"><span>v = </span><input type="text" id="a" placeholder="ex: 20"><span>(in <sup>m</sup>&frasl;<sub>s</sub>)</span></div>
+    <button id="btnSubmit1" class="buton">Get Value</button>
+    <div id="viteza1"></div>
+    <div id="subsol">    
+      <a href="index.html" class="inactive"> Lispsete o data? Da click aici.</a>
+        </div>
+    <script>
+        const submitButton =   document.getElementById ("btnSubmit")
+        const viteza = document.getElementById("viteza")
+        submitButton.addEventListener("click", calculate1)
+        function calculate1(){
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const rez=n1-n2
+            viteza.innerHTML += '<p class="text"> d = ' + rez + ' m</p>';
+       }
+       const submitButton1 =   document.getElementById ("btnSubmit1")
+        const viteza1 = document.getElementById("viteza1")
+        submitButton1.addEventListener("click", calculate2)
+        function calculate2(){
+            const v= parseFloat(document.getElementById("v").value);
+            const a = parseFloat(document.getElementById("a").value);
+            const rez1=(v*a*a)/2
+            viteza1.innerHTML += '<p class="text"> E<sub>c</sub> = ' + rez1 + ' J</p>';
+       }
+    </script>
+</body>
+</html>

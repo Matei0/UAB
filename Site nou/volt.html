@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tensiunea electrica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="active"><i class="i">Tensiunea electrica</i></a>
+        <a href="index.html" class="inactive"><i class="i"></i> Cauta altceva</a>
+      </div>
+    <br/>
+      <p class="text">Tensiunea electrica se poate calcula folosind urmatoarea formula:</p>
+    <p class="formula">U = I×R</p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text">I = </span><input type="text" id="num1" placeholder="Intensitatea"><span>(in A)</span></div>
+    <div class="text">R = </span><input type="text" id="num2" placeholder="rezistenta electrica"><span>(in Ω)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+    <span id="circuit"><iframe src="https://www.falstad.com/circuit/circuitjs.html" height="60%" width="80%"></iframe> </span>
+    <span id="instr">Instructiuni: Pentru a crea un nou crcuit da click pe "File" si apoi pe "New Blank Circuit". De la draw se adauga toate componentele necesare. Valoarea lor se poate schimba prin click dreapta si edit. Tinand cursorul pe un element din circuit se vor afisa toate valorile necesare.
+
+    </span>
+      <br/>
+      <p class="formula">E<sub>p</sub> = <sup><small>K &#8710l<sup>2</small></sup>&frasl;<sub>2</sub></p>
+    <p class="text"><u>Aplicare</u></p>
+    <div class="text">K = </span><input type="text" id="num1" placeholder="ex: 20"><span>(in <sup>N</sup>&frasl;<sub>m</sub>)</span></div>
+    <div class="text">&#8710l = </span><input type="text" id="num2"><span>(in m)</span></div>
+    <button id="btnSubmit" class="buton">Get Value</button>
+    <div id="viteza"></div>
+      <br/>
+      <br/>
+    <div id="subsol"> 
+    <a href="index.html" class="inactive"> Lispsete o data? Da click aici.</a>
+        
+      </div> 
+</body>  
+    <script>
+        const submitButton =   document.getElementById ("btnSubmit")
+        const viteza = document.getElementById("viteza")
+        submitButton.addEventListener("click", calculate1)
+        function calculate1(){
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            const rez=(n1*n2*n2)/2
+            viteza.innerHTML += '<p class="text"> E<sub>p</sub> = ' + rez + ' J</p>';
+       }
+    </script>
+</html>

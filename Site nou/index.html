@@ -1,0 +1,63 @@
+
+<html lang="en">   
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> Pagina principala</title>
+    
+</head>
+<body>
+<img src="poza.png" id="imag">
+<span  id="indic">Cauta marimea fizica pe care vrei sa o calculezi</span>
+<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+<ul id="myMenu">
+  <li id="li"><a href="viteza.html">Viteza</a></li>
+  <li id="li"><a href="spatiu.html">Spatiul</a></li>
+  <li id="li"><a href="timp.html">Timpul</a></li>
+  <li id="li"><a href="acceleratie.html">Acceleratia</a></li>
+  <li id="li"><a href="acceleratig.html">Acceleratia gravitationala</a></li>
+  <li id="li"><a href="forta.html">Forta</a></li>
+  <li id="li"><a href="fe.html">Forta elastica</a></li>
+  <li id="li"><a href="greuate.html">Greutatea</a></li>
+  <li id="li"><a href="ff.html">Forta de frecare</a></li>
+  <li id="li"><a href="ft.html">Forta de tractiune</a></li>
+  <li id="li"><a href="impuld.html">Impulsul</a></li>
+  <li id="li"><a href="lucru.html">Lucrul Mecanic</a></li>
+  <li id="li"><a href="putere.html">Puterea</a></li>
+  <li id="li"><a href="eneregie.html">Energia</a></li>
+  <li id="li"><a href="ec.html">Energia cinetica</a></li>
+  <li id="li"><a href="ep.html">Energia potentiala</a></li>
+  <li id="li"><a href="epr.html">Energia potentiala in resort</a></li>
+  <li id="li"><a href="volt.html">Tensiune curent electric</a></li>
+</ul>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="mySidenav" class="sidenav"> 
+  <a href="home.html" id="about" class="fa fa-home"> Home</a>
+   <a href="teorie.html" id="teorie">📖 Teorie</a>
+   <a href="pag.html" id="projects"  target="_blank">📝 Pagina rezolvare</a>
+   <a href="#" id="contact">Recenzii</a>
+</div>
+
+ <script>
+  function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
